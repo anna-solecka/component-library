@@ -9,7 +9,7 @@ const SiteFooter = ({ navItems }: SiteFooterProps) => {
         <div className="ds_site-footer__content">
           <ul className="ds_site-footer__site-items">
             {navItems.map((item) => (
-              <li className="ds_site-items__item">
+              <li key={item.label} className="ds_site-items__item">
                 <a href={item.href}>{item.label}</a>
               </li>
             ))}

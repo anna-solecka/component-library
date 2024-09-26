@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface SiteHeaderProps {
   title: string;
 
@@ -125,17 +127,17 @@ const SiteHeader = ({ title, navItems }: SiteHeaderProps) => {
             <nav className="ds_site-navigation">
               <ul className="ds_site-navigation__list">
                 {navItems.map((item) => (
-                  <li className="ds_site-navigation__item">
-                    <a
+                  <li className="ds_site-navigation__item" key={item.href}>
+                    <Link
                       data-header={"header-link-" + `{index}`}
                       className={`ds_site-navigation__link ${
                         item.isCurrent ? "ds_current" : ""
                       }`}
-                      href={item.href}
+                      to={item.href}
                       data-device="desktop"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

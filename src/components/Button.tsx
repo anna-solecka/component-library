@@ -7,6 +7,7 @@ interface ButtonProps {
   isSmall?: boolean;
   width?: "fixed" | "max";
   isLink?: boolean;
+  onClick?: () => void | Promise<void>;
 }
 const Button = ({
   label,
@@ -15,6 +16,7 @@ const Button = ({
   isSmall,
   width,
   isLink,
+  onClick,
 }: ButtonProps) => {
   return (
     <>
@@ -30,6 +32,7 @@ const Button = ({
           )}
           disabled={isDisabled}
           type="button"
+          onClick={onClick}
         >
           {label}
         </button>

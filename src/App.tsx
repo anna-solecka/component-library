@@ -1,60 +1,87 @@
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
-import Accordion from "./components/Accordion";
-import Button from "./components/Button";
-
-import ConfirmationMessage from "./components/ConfirmationMessage";
 import DesignSystem from "./components/DesignSystem";
-import LayoutComponent from "./components/LayoutComponent";
-//import Details from "./components/Details";
-//import NotificationPanel from "./components/NotificationPanel";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
-import TabsContainer from "./components/Tabs/TabsContainer";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ComponentsPage from "./pages/ComponentsPage";
+import AccordionPage from "./pages/AccordionPage";
+import ButtonPage from "./pages/ButtonPage";
+import TabsPage from "./pages/TabsPage";
+import UsersPage from "./pages/UsersPage";
+import CardNavigationPage from "./pages/CardNavigationPage";
+import UserProfilePage from "./components/UserProfile";
+import TestimonialsPage from "./pages/TestimonialsPage";
+import TestimonialsProfilePage from "./components/TestimonialsProfilePage";
+import ProductsPage from "./pages/ProductsPage";
+import ProductProfile from "./components/ProductProfile";
 
 function App() {
+  const location = useLocation();
+  console.log(location);
   return (
-    <>
-      <DesignSystem
-        header={
-          <SiteHeader
-            title="Design System"
-            navItems={[
-              { label: "Home", href: "/" },
-              { label: "About", href: "/about", isCurrent: true },
-              { label: "Components", href: "/components" },
-            ]}
-          />
-        }
-        footer={
-          <SiteFooter
-            navItems={[
-              { label: "Privacy", href: "#" },
-              { label: "Cookies", href: "#", isCurrent: true },
-              { label: "Accessibility", href: "#" },
-            ]}
-          />
-        }
-      >
-        <LayoutComponent
-          header={
-            <ConfirmationMessage
-              title="Landlord added successfully"
-              body={
-                <p>
-                  You have added the landlord <strong>John Smith </strong> to
-                  the application.
-                </p>
-              }
-            />
-          }
-          partner={<Button label="Add Landlord" />}
-          feedback={<Accordion />}
-          sidebar={<Button label="Add Landlord" />}
-        >
-          <TabsContainer />
-        </LayoutComponent>
-      </DesignSystem>
-    </>
+    <DesignSystem
+      header={
+        <SiteHeader
+          title="Design System"
+          navItems={[
+            { label: "Home", href: "/", isCurrent: location.pathname === "/" },
+            {
+              label: "About",
+              href: "/about",
+              isCurrent: location.pathname === "/about",
+            },
+            {
+              label: "Components",
+              href: "/components",
+              isCurrent: location.pathname === "/components",
+            },
+            {
+              label: "Users",
+              href: "/users",
+              isCurrent: location.pathname === "/users",
+            },
+            {
+              label: "Products",
+              href: "/products",
+              isCurrent: location.pathname === "/products",
+            },
+          ]}
+        />
+      }
+      footer={
+        <SiteFooter
+          navItems={[
+            { label: "Privacy", href: "#" },
+            { label: "Cookies", href: "#", isCurrent: true },
+            { label: "Accessibility", href: "#" },
+          ]}
+        />
+      }
+    >
+      <Routes>
+        <Route path="/" Component={HomePage} />
+        <Route path="/about" Component={AboutPage} />
+        <Route path="/components" Component={ComponentsPage} />
+        <Route path="/users" Component={UsersPage} />
+        <Route path="/products" Component={ProductsPage} />
+        <Route path="/products/:productid" Component={ProductProfile} />
+        <Route path="/users/:userid" Component={UserProfilePage} />
+        <Route path="/users/testimonials/" Component={TestimonialsPage} />
+        <Route
+          path="/users/testimonials/:userid"
+          Component={TestimonialsProfilePage}
+        />
+        <Route path="/components/accordion" Component={AccordionPage} />
+        <Route path="/components/button" Component={ButtonPage} />
+        <Route path="/components/tabs" Component={TabsPage} />
+        <Route
+          path="/components/cardnavigation"
+          Component={CardNavigationPage}
+        />
+      </Routes>
+    </DesignSystem>
   );
 }
 
