@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 import LayoutComponent from "../components/LayoutComponent";
 
+import ToDo from "../components/ToDo/ToDo";
+
 export const SidebarLinks = () => {
   return (
     <div>
@@ -23,8 +25,8 @@ export const SidebarLinks = () => {
 
 const ComponentsPage = () => {
   return (
-    <LayoutComponent sidebar={<SidebarLinks />}>
-      Welcom to compoentns
+    <LayoutComponent>
+      <ToDo />
     </LayoutComponent>
   );
 };

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import LayoutComponent from "../components/LayoutComponent";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { useBasket } from "../components/BasketContext";
+import Basket from "../components/Basket";
 
 interface Product {
   id: number;
@@ -10,19 +12,15 @@ interface Product {
   shortDescription: string;
   image: string;
   quantity: number;
+  rrpPrice: number;
 }
 
-interface BasketProps {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [basketProduct, setBasketProduct] = useState<BasketProps[]>([]);
+  const { addToBasket } = useBasket();
+  const [quantity, setQuantity] = useState<number>(1);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -53,66 +51,65 @@ const ProductsPage = () => {
     return <div>Error: {error}</div>;
   }
 
-  const onAddToBasket = (newProduct: BasketProps) => {
-    const exist = basketProduct.find((x) => x.id === newProduct.id);
-    if (exist) {
-      setBasketProduct(
-        basketProduct.map((x) =>
-          x.id === newProduct.id
-            ? { ...exist, quantity: exist.quantity + 1 }
-            : x
-        )
-      );
-    } else {
-      setBasketProduct([...basketProduct, { ...newProduct, quantity: 1 }]);
-    }
-  };
-
   return (
-    <>
-      <LayoutComponent
-        sidebar={
-          <div className="ds_wrapper">
-            <h1>Basket</h1>
-            {basketProduct.length > 0 ? (
-              basketProduct.map((basketProduct) => (
-                <div key={basketProduct.id}>
-                  <p>Product: {basketProduct.name}</p>
-                  <p>Price: {basketProduct.price}</p>
-                  <p>Quantity: {basketProduct.quantity}</p>
+    <LayoutComponent sidebar={<Basket />}>
+      <div className="container">
+        {products.map((product) => (
+          <>
+            <div key={product.id} className="product">
+              <Link to={`/products/${product.id}`}>{product.name}</Link>
+              <p>{product.shortDescription}</p>
+
+              <div>
+                {product.price}
+
+                {product.rrpPrice > product.price && (
+                  <>
+                    {" "}
+                    {" / "}
+                    <span className="product__rrp">{product.rrpPrice}</span>
+                    <p className="product__savings">
+                      <p>
+                        Savings:
+                        {Number(
+                          (
+                            100 -
+                            (product.price * 100) / product.rrpPrice
+                          ).toFixed(2)
+                        )}
+                        %
+                      </p>
+                    </p>
+                  </>
+                )}
+              </div>
+              <div className="product__quantity">
+                <div className="ds_select-wrapper  ds_input--fluid-one-third">
+                  <select
+                    className="ds_select"
+                    id={`addQuantity-${product.id}`}
+                    name="component"
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                  <span className="ds_select-arrow" aria-hidden="true"></span>
                 </div>
-              ))
-            ) : (
-              <p>Your basket is empty</p>
-            )}
-          </div>
-        }
-      >
-        <div className="ds_wrapper">
-          <ul>
-            {products.map((product) => (
-              <>
-                <li key={product.id}>
-                  <h2>{product.name}</h2>
-                  <Link to={`/products/${product.id}`}>{product.name}</Link>
-                  {
-                    <div>
-                      <p>{product.price}</p>
-                      {product.shortDescription}{" "}
-                    </div>
-                  }
-                  <Button
-                    label="Add to basket"
-                    isLink={true}
-                    onClick={() => onAddToBasket(product)}
-                  />{" "}
-                </li>
-              </>
-            ))}
-          </ul>
-        </div>
-      </LayoutComponent>
-    </>
+
+                <Button
+                  label="Add"
+                  onClick={() => addToBasket(product, quantity)}
+                />
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
+    </LayoutComponent>
   );
 };
 

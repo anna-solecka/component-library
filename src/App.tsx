@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
+import "./components/index.scss";
 import DesignSystem from "./components/DesignSystem";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";

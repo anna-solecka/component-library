@@ -1,6 +1,5 @@
-import React from "react";
-import { SidebarLinks } from "./ComponentsPage";
 import LayoutComponent from "../components/LayoutComponent";
+import { SidebarLinks } from "./ComponentsPage";
 
 const AccordionPage = () => {
   return (

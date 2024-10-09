@@ -5,11 +5,14 @@ import App from "./App.tsx";
 import "./components/index.scss";
 import "./design-system.css";
 import "./index.css";
+import { BasketProvider } from "./components/BasketContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <BasketProvider>
+        <App />
+      </BasketProvider>
     </BrowserRouter>
   </StrictMode>
 );

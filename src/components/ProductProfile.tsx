@@ -3,6 +3,9 @@ import LayoutComponent from "./LayoutComponent";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 import ProductReviews from "./ProductReviews";
+import { useBasket } from "./BasketContext";
+import Product from "./Product/Product";
+import Basket from "./Basket";
 
 export interface Product {
   id: number;
@@ -13,13 +16,7 @@ export interface Product {
   image: string;
   category: string;
   quantity: number;
-}
-
-interface BasketProps {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
+  rrpPrice: number;
 }
 
 const ProductProfile: React.FC = () => {
@@ -28,7 +25,9 @@ const ProductProfile: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [basketProduct, setBasketProduct] = useState<BasketProps[]>([]);
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const { basket, addToBasket } = useBasket();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -63,23 +62,9 @@ const ProductProfile: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  const onAddToBasket = (newProduct: BasketProps) => {
-    const exist = basketProduct.find((x) => x.id === newProduct.id);
-    if (exist) {
-      setBasketProduct(
-        basketProduct.map((x) =>
-          x.id === newProduct.id
-            ? { ...exist, quantity: exist.quantity + 1 }
-            : x
-        )
-      );
-    } else {
-      setBasketProduct([...basketProduct, { ...newProduct, quantity: 1 }]);
-    }
-  };
-
   return (
-    <LayoutComponent>
+    <LayoutComponent sidebar={<Basket />}>
+      <Product />
       {product && (
         <div className="ds_wrapper">
           <h1>{product.name}</h1>
@@ -97,13 +82,22 @@ const ProductProfile: React.FC = () => {
           <Link to="/products">
             <Button label="Back to products" isLink={true} />
           </Link>
+          <label className="ds_label">Quatity</label>
+          <input
+            min="0"
+            max="20"
+            className="ds_input  ds_input--fixed-10"
+            type="number"
+            id={`addQuantity-${product.id}`}
+            onChange={(e) => setQuantity(Number(e.target.value))}
+          />
           <Button
             label="Add to basket"
             isLink={true}
-            onClick={() => onAddToBasket(product)}
+            onClick={() => addToBasket(product, quantity)}
           />
-          {basketProduct && basketProduct.length > 0 && (
-            <div>Basket has {basketProduct.length} items</div>
+          {basket && basket.length > 0 && (
+            <div>Basket has {basket.length} items</div>
           )}
         </div>
       )}

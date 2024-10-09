@@ -1,0 +1,27 @@
+.product__basket{
+    padding: 20px;
+    background:#ebebeb;
+    border-bottom: #e1e1e1 solid 1px;
+    max-width: fit-content;
+}
+
+.buttons{
+    display: flex;
+    column-gap: 10px;
+    align-items: start;
+
+}
+.container__basket{
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px ;
+    border-color: #e1e1e1;
+      
+}
+.heading__basket{
+    padding: 15px;
+}
+
+.savings{
+    color: #0065bd;
+}
