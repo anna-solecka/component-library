@@ -6,13 +6,16 @@ import "./components/index.scss";
 import "./design-system.css";
 import "./index.css";
 import { BasketProvider } from "./components/BasketContext.tsx";
+import { TodoProvider } from "./components/ToDo/TodoContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <BasketProvider>
-        <App />
-      </BasketProvider>
+      <TodoProvider>
+        <BasketProvider>
+          <App />
+        </BasketProvider>
+      </TodoProvider>
     </BrowserRouter>
   </StrictMode>
 );

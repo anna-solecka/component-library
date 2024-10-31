@@ -17,6 +17,8 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import TestimonialsProfilePage from "./components/TestimonialsProfilePage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductProfile from "./components/ProductProfile";
+import CatsPage from "./components/CatsPage";
+import CatItem from "./components/CatItem";
 
 function App() {
   const location = useLocation();
@@ -27,6 +29,11 @@ function App() {
         <SiteHeader
           title="Design System"
           navItems={[
+            {
+              label: "Cats",
+              href: "/cats",
+              isCurrent: location.pathname === "/cats",
+            },
             { label: "Home", href: "/", isCurrent: location.pathname === "/" },
             {
               label: "About",
@@ -63,6 +70,8 @@ function App() {
     >
       <Routes>
         <Route path="/" Component={HomePage} />
+        <Route path="/cats" Component={CatsPage} />
+        <Route path="/cats/:id" Component={CatItem} />
         <Route path="/about" Component={AboutPage} />
         <Route path="/components" Component={ComponentsPage} />
         <Route path="/users" Component={UsersPage} />

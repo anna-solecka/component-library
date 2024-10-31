@@ -1,15 +1,27 @@
-h2 {
-  color: grey;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-button {
-  background-color: #01d788; /* Green */
-  border: none;
-  padding: 5px 15px;
-  border-radius: 5px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+$gree-color: #01d788;
+
+.todo {
+  h2 {
+    color: grey;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+
+  button {
+    background-color: $gree-color;
+    border: none;
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  input {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+  }
 }

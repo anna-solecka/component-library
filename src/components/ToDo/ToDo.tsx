@@ -1,34 +1,34 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import "./todo.scss";
+import { useTodo } from "./TodoContext";
 
-const ToDo = () => {
-  const [newTodo, setNewTodo] = useState<string>("");
-  const [todo, setTodo] = useState<{ id: number; todo: string }[]>([]);
-  console.log(newTodo);
-  const onAddTodo = (e: React.FormEvent) => {
-    if (newTodo !== "") {
-      e.preventDefault();
-      setTodo([...todo, { id: Date.now(), todo: newTodo }]);
-      setNewTodo("");
-    } else {
-      e.preventDefault();
-    }
-  };
+const ToDo: FC = () => {
+  const { todo, onAddTodo, onRemove } = useTodo();
+  const [newTodo, setNewTodo] = useState("");
 
-  const onRemove = (id: number) => {
-    setTodo(todo.filter((a) => a.id !== id));
-  };
   return (
-    <>
+    <div className="todo">
       <h2>To Do List</h2>
-      <form onSubmit={onAddTodo}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (newTodo === "") return;
+          onAddTodo({
+            id: Date.now(),
+            todo: newTodo,
+            text: newTodo,
+            completed: false,
+          });
+          setNewTodo("");
+        }}
+      >
         <input
           type="text"
           id="todo-input"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button onClick={onAddTodo}>Add</button>
+        <button type="submit">Add</button>
       </form>
 
       <ul>
@@ -39,7 +39,7 @@ const ToDo = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

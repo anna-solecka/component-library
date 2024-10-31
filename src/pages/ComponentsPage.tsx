@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-
 import LayoutComponent from "../components/LayoutComponent";
-
-import ToDo from "../components/ToDo/ToDo";
+import Accordion2 from "../components/Accordion2";
 
 export const SidebarLinks = () => {
   return (
@@ -26,9 +24,77 @@ export const SidebarLinks = () => {
 const ComponentsPage = () => {
   return (
     <LayoutComponent>
-      <ToDo />
+      <Accordion2
+        items={[
+          {
+            title: "First Item",
+            content: "Accordion Item",
+            checked: false,
+          },
+          {
+            title: "Second Item",
+            content: "Accordion Item",
+            checked: false,
+          },
+          {
+            title: "Third Item",
+            content: "Accordion Item",
+            checked: false,
+          },
+        ]}
+      />
     </LayoutComponent>
   );
 };
 
 export default ComponentsPage;
+/*
+<AccordinonContainer>
+  <AccorditonItem title="Item 1">
+    <div>Item one content</div>
+  </AccorditonItem>
+  <AccorditonItem title="Item 2">
+    <div><h1>Item two content</h1></div>
+  </AccorditonItem>
+  <AccorditonItem title="Item 3">
+    <h1>Item three content</h1>
+  </AccorditonItem>
+</AccordinonContainer>
+*/
+
+{
+  /* <Tabss
+        items={[
+          {
+            id: "past-day",
+            title: "Past day",
+            content: (
+              <div>
+                <h1>Armin Test</h1>
+                <p>Content day here</p>
+              </div>
+            ),
+          },
+          {
+            id: "past-week",
+            title: "Past week",
+            content: (
+              <div>
+                <h2>Info</h2>
+                <p>Past week here</p>
+              </div>
+            ),
+          },
+          {
+            id: "past-month",
+            title: "Past month",
+            content: (
+              <div>
+                <h2>Info</h2>
+                <p>Past month here</p>
+              </div>
+            ),
+          },
+        ]}
+      /> */
+}
