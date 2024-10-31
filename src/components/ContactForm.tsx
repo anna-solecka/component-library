@@ -65,6 +65,7 @@ const ContactForm = () => {
         />
         <DsTextarea
           label="Message"
+          name={message}
           error={isSubmitted && !message ? "This field is required" : ""}
           onChange={(data) => setMessage(data)}
           rows={3}
@@ -99,9 +100,6 @@ const ContactForm = () => {
         </div> */}
         <button className="ds_button">Submit</button>
       </form>
-      <button className="ds_button" onClick={() => setFirstName("ARMIN")}>
-        ARMIN
-      </button>
     </div>
   );
 };

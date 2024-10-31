@@ -6,15 +6,17 @@ interface DsTextareaProps {
   onChange: (data: string) => void;
   value: string;
   rows?: number;
+  name: string;
 }
 
 const DsTextarea: React.FC<DsTextareaProps> = ({
   rows,
   label,
   error,
+  name,
   onChange,
   value,
-}: DsInputProps) => {
+}: DsTextareaProps) => {
   return (
     <div className={`ds_question ${error ? "ds_question--error" : ""}`}>
       <label className="ds_label">{label}</label>
@@ -34,6 +36,8 @@ const DsTextarea: React.FC<DsTextareaProps> = ({
         className={`ds_input ${error ? "ds_input--error" : ""}`}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        name={name}
+        id={name}
       />
     </div>
   );
