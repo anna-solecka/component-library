@@ -7,6 +7,7 @@ interface DsTextareaProps {
   value: string;
   rows?: number;
   name: string;
+  hint: string;
 }
 
 const DsTextarea: React.FC<DsTextareaProps> = ({
@@ -16,16 +17,23 @@ const DsTextarea: React.FC<DsTextareaProps> = ({
   name,
   onChange,
   value,
+  hint,
 }: DsTextareaProps) => {
+  const errorId = name + "-error-message";
+  const hintId = name + "-hint-text";
   return (
     <div className={`ds_question ${error ? "ds_question--error" : ""}`}>
-      <label className="ds_label">{label}</label>
+      <label className="ds_label" htmlFor={name}>
+        {label}
+      </label>
+      {hint && (
+        <p className="ds_hint-text" id={hintId}>
+          {hint}
+        </p>
+      )}
       {error && (
         <>
-          <p
-            className="ds_question__error-message"
-            id="error-message-more-detail"
-          >
+          <p className="ds_question__error-message" id={errorId}>
             <span className="visually-hidden">Error:</span> {error}
           </p>
         </>
@@ -38,6 +46,7 @@ const DsTextarea: React.FC<DsTextareaProps> = ({
         onChange={(e) => onChange(e.target.value)}
         name={name}
         id={name}
+        aria-describedby={errorId + " " + hintId}
       />
     </div>
   );

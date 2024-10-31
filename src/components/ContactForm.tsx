@@ -3,20 +3,23 @@ import { useState } from "react";
 import DsInput from "./DsInput";
 import DsTextarea from "./DsTextarea";
 import axios from "axios";
+import DsSelect from "./DsSelect";
 
 const ContactForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [select, setSelect] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  console.log({ firstName, lastName, email, message });
+  console.log({ firstName, lastName, email, message, select });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setIsSubmitted(true);
+
     if (firstName && lastName && email && message) {
       axios
         .post("/api/contact", {
@@ -24,6 +27,7 @@ const ContactForm = () => {
           lastName: lastName,
           email: email,
           message: message,
+          select: select,
         })
         .then(function (response) {
           console.log(response);
@@ -31,6 +35,12 @@ const ContactForm = () => {
         .catch(function (error) {
           console.log(error);
         });
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMessage("");
+      setSelect("");
+      setIsSubmitted(false);
     }
   };
 
@@ -65,39 +75,22 @@ const ContactForm = () => {
         />
         <DsTextarea
           label="Message"
-          name={message}
+          name="message"
           error={isSubmitted && !message ? "This field is required" : ""}
           onChange={(data) => setMessage(data)}
           rows={3}
           value={message}
+          hint="Please enter your message here."
         />
-        {/* <div
-          className={`ds_question ${
-            isSubmitted && !message ? "ds_question--error" : ""
-          }`}
-        >
-          <label className="ds_label">Message</label>
-          {isSubmitted && !message && (
-            <p
-              className="ds_question__error-message"
-              id="error-message-more-detail"
-            >
-              <span className="visually-hidden">Error:</span> This field is
-              required
-            </p>
-          )}
-          <textarea
-            value={message}
-            className={`ds_input ${
-              isSubmitted && !message ? "ds_input--error" : ""
-            }`}
-            placeholder="Message"
-            rows={3}
-            id="description"
-            name="description"
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </div> */}
+        <DsSelect
+          options={["Post", "Message", "Email"]}
+          title="Select a form of contact"
+          name="select"
+          value={select}
+          error={isSubmitted && !select ? "This field is required" : ""}
+          onChange={(data) => setSelect(data)}
+        />
+
         <button className="ds_button">Submit</button>
       </form>
     </div>
