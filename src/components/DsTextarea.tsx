@@ -43,7 +43,7 @@ const DsTextarea: React.FC<DsTextareaProps> = ({
         placeholder={label}
         className={`ds_input ${error ? "ds_input--error" : ""}`}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e)}
         name={name}
         id={name}
         aria-describedby={errorId + " " + hintId}

@@ -32,7 +32,7 @@ const DsSelect = ({
           id={name}
           name={name}
           value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e)}
         >
           <option value=""></option>
           {options.map((option) => (

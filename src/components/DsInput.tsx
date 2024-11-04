@@ -45,7 +45,7 @@ const DsInput: React.FC<DsInputProps> = ({
         id={name}
         className={`ds_input ${error ? "ds_input--error" : ""}`}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e)}
         aria-describedby={errorId + " " + hintId}
       />
     </div>
