@@ -1,5 +1,10 @@
+interface DsSelectOptionProps {
+  value: string;
+  displayName: string;
+}
+
 interface DsSelectProps {
-  options: string[];
+  options: DsSelectOptionProps[];
   title: string;
   name: string;
   onChange: (data: string) => void;
@@ -36,8 +41,8 @@ const DsSelect = ({
         >
           <option value=""></option>
           {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.displayName}
             </option>
           ))}
         </select>
