@@ -4,6 +4,11 @@ import {
   CardNavigationGroup,
 } from "../components/CardNavigation";
 import LayoutComponent from "../components/LayoutComponent";
+import DsTable from "../components/DsTable";
+import DsTableHead from "../components/DsTableHead";
+import DsTableCell from "../components/DsTableCell";
+import DsTableRow from "../components/DsTableRow";
+import DsTableBody from "../components/DsTableBody";
 
 interface User {
   id: number;
@@ -61,6 +66,27 @@ const UsersPage: React.FC = () => {
             />
           ))}
         </CardNavigationGroup>
+
+        <DsTable>
+          <DsTableHead>
+            <DsTableCell isHeader>Name</DsTableCell>
+            <DsTableCell isHeader>Email</DsTableCell>
+            <DsTableCell isHeader>Bio</DsTableCell>
+            <DsTableCell isHeader>Profile page</DsTableCell>
+          </DsTableHead>
+          <DsTableBody>
+            {users.map((user) => (
+              <DsTableRow key={user.id}>
+                <DsTableCell>{user.name}</DsTableCell>
+                <DsTableCell>{user.email}</DsTableCell>
+                <DsTableCell>{user.bio}</DsTableCell>
+                <DsTableCell>
+                  <a href={`/users/${user.id}`}>View profile</a>
+                </DsTableCell>
+              </DsTableRow>
+            ))}
+          </DsTableBody>
+        </DsTable>
       </div>
     </LayoutComponent>
   );
