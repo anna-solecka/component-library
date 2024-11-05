@@ -13,7 +13,9 @@ const DsPageHeader: React.FC<DsPageHeaderProps> = ({
 }) => {
   return (
     <header className="ds_page-header">
-      <span className="ds_page-header__label  ds_content-label">{label}</span>
+      {label && (
+        <span className="ds_page-header__label  ds_content-label">{label}</span>
+      )}
       <h1 className="ds_page-header__title">{title}</h1>
 
       {metadataKey && metadataValue && (

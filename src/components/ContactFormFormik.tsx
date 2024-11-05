@@ -30,8 +30,6 @@ const ContactFormSchema = Yup.object().shape({
 const ContactFormFormik = () => {
   return (
     <div>
-      <h1>Contact Formik</h1>
-
       <Formik
         validateOnBlur={true}
         initialValues={{

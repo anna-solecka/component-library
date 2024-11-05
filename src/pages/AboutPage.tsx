@@ -1,5 +1,7 @@
 import ContactFormFormik from "../components/ContactFormFormik";
+import DsNotificationPanel from "../components/DsNotificationPanel";
 import DsPageHeader from "../components/DsPageHeader";
+import DsTable from "../components/DsTable";
 import LayoutComponent from "../components/LayoutComponent";
 
 const AboutPage = () => {
@@ -14,6 +16,9 @@ const AboutPage = () => {
         />
       }
     >
+      <DsNotificationPanel title="Thank you for visiting">
+        "This is a contact form page"
+      </DsNotificationPanel>
       <ContactFormFormik />
     </LayoutComponent>
   );
