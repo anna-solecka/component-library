@@ -4,11 +4,12 @@ import {
   CardNavigationGroup,
 } from "../components/CardNavigation";
 import LayoutComponent from "../components/LayoutComponent";
-import DsTable from "../components/DsTable";
-import DsTableHead from "../components/DsTableHead";
-import DsTableCell from "../components/DsTableCell";
-import DsTableRow from "../components/DsTableRow";
-import DsTableBody from "../components/DsTableBody";
+// import DsTable from "../components/DsTable";
+// import DsTableHead from "../components/DsTableHead";
+// import DsTableCell from "../components/DsTableCell";
+// import DsTableRow from "../components/DsTableRow";
+// import DsTableBody from "../components/DsTableBody";
+import DsTableGrid from "./DsTableGrid";
 
 interface User {
   id: number;
@@ -16,6 +17,8 @@ interface User {
   email: string;
   bio: string;
 }
+
+const getUserLInk = (data: User) => <a href={`/users/${data.id}`}>View</a>;
 
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -67,7 +70,7 @@ const UsersPage: React.FC = () => {
           ))}
         </CardNavigationGroup>
 
-        <DsTable>
+        {/* <DsTable>
           <DsTableHead>
             <DsTableCell isHeader>Name</DsTableCell>
             <DsTableCell isHeader>Email</DsTableCell>
@@ -86,7 +89,23 @@ const UsersPage: React.FC = () => {
               </DsTableRow>
             ))}
           </DsTableBody>
-        </DsTable>
+        </DsTable> */}
+        <DsTableGrid
+          columns={[
+            {
+              label: "Name",
+              field: "name",
+            },
+            { label: "Bio", field: "bio" },
+            { label: "Email", field: "email" },
+            {
+              label: "Action",
+              field: "id",
+              render: getUserLInk,
+            },
+          ]}
+          data={users}
+        />
       </div>
     </LayoutComponent>
   );

@@ -5,7 +5,7 @@ interface DsTableBodyProps {
 }
 
 const DsTableBody: React.FC<DsTableBodyProps> = ({ children }) => {
-  return <>{children}</>;
+  return <tbody>{children}</tbody>;
 };
 
 export default DsTableBody;

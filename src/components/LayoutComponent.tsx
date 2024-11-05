@@ -17,15 +17,15 @@ const LayoutComponent: FC<LayoutComponentProps> = ({
   return (
     <div className="ds_wrapper">
       <main className="ds_layout  ds_layout--article">
-        <div className="ds_layout__header">{header}</div>
+        {header && <div className="ds_layout__header">{header}</div>}
 
-        <div className="ds_layout__partner">{partner}</div>
+        {partner && <div className="ds_layout__partner">{partner}</div>}
 
         <div className="ds_layout__content">{children}</div>
 
-        <div className="ds_layout__sidebar">{sidebar}</div>
+        {sidebar && <div className="ds_layout__sidebar">{sidebar}</div>}
 
-        <div className="ds_layout__feedback">{feedback}</div>
+        {feedback && <div className="ds_layout__feedback">{feedback}</div>}
       </main>
     </div>
   );
