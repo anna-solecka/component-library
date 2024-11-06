@@ -1,27 +1,29 @@
-import ContactFormFormik from "../components/ContactFormFormik";
-import DsNotificationPanel from "../components/DsNotificationPanel";
+// import ContactFormFormik from "../components/ContactFormFormik";
+// import DsNotificationPanel from "../components/DsNotificationPanel";
 import DsPageHeader from "../components/DsPageHeader";
-import DsTable from "../components/DsTable";
-import DsTableBody from "../components/DsTableBody";
-import DsTableCell from "../components/DsTableCell";
-import DsTableHead from "../components/DsTableHead";
-import DsTableRow from "../components/DsTableRow";
+// import DsTable from "../components/DsTable";
+// import DsTableBody from "../components/DsTableBody";
+// import DsTableCell from "../components/DsTableCell";
+// import DsTableHead from "../components/DsTableHead";
+// import DsTableRow from "../components/DsTableRow";
 
 import LayoutComponent from "../components/LayoutComponent";
+import MortgageCalculator from "../components/MortgageCalculator";
 
 const AboutPage = () => {
   return (
     <LayoutComponent
       header={
         <DsPageHeader
-          title="Contact form"
+          title="Mortgage calculator"
           label="Form in formik"
           metadataKey="Last updated"
-          metadataValue="10.12.2002"
+          metadataValue="06.11.2024"
         />
       }
     >
-      <DsNotificationPanel title="Thank you for visiting">
+      <MortgageCalculator />
+      {/* <DsNotificationPanel title="Thank you for visiting">
         "This is a contact form page"
       </DsNotificationPanel>
       <ContactFormFormik />
@@ -52,7 +54,7 @@ const AboutPage = () => {
             <DsTableCell>Row 3</DsTableCell>
           </DsTableRow>
         </DsTableBody>
-      </DsTable>
+      </DsTable> */}
 
       {/* <Table7Container component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
