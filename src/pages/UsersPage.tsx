@@ -9,7 +9,7 @@ import LayoutComponent from "../components/LayoutComponent";
 // import DsTableCell from "../components/DsTableCell";
 // import DsTableRow from "../components/DsTableRow";
 // import DsTableBody from "../components/DsTableBody";
-import DsTableGrid from "./DsTableGrid";
+import DsTableGrid from "../components/DsTableGrid";
 
 interface User {
   id: number;

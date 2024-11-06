@@ -4,7 +4,7 @@ import { Cat } from "./CatItem";
 import { Link } from "react-router-dom";
 
 import LayoutComponent from "./LayoutComponent";
-import DsTableGrid from "../pages/DsTableGrid";
+import DsTableGrid from "../components/DsTableGrid";
 
 function Cats() {
   const [cats, setCats] = useState<Cat[]>([]);
