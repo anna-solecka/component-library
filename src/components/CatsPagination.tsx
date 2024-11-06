@@ -25,17 +25,27 @@ const getPageNumber = (page: number) => {
 //const getAdabtiblityDots = getCatDots("adaptability");
 //const getChildFriendlyDots = getCatDots("child_friendly");
 
+interface CatPagedResponse {
+  data: Cat[];
+  numberOfPages: number;
+  total: number;
+}
+
 function CatsPagination() {
   const [cats, setCats] = useState<Cat[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(0);
+  const [totalCats, setTotalCats] = useState<number>(0);
 
   useEffect(() => {
     axios
-      .get<Cat[]>(`http://localhost:3000/api/cats-paged?page=${currentPage}`)
+      .get<CatPagedResponse>(
+        `http://localhost:3000/api/cats-paged?page=${currentPage}`
+      )
       .then((res) => {
         setCats(res.data.data);
         setTotalPages(res.data.numberOfPages);
+        setTotalCats(res.data.total);
       })
       .catch((err) => console.log(err));
   }, [currentPage]);
@@ -56,7 +66,7 @@ function CatsPagination() {
                 <a
                   aria-label="Previous page"
                   className="ds_pagination__link  ds_pagination__link--text  ds_pagination__link--icon"
-                  href={`/cats/${"cats-paged?page=2"}`}
+                  onClick={() => setCurrentPage(currentPage - 1)}
                 >
                   <svg className="ds_icon" aria-hidden="true" role="img">
                     <use href="/assets/images/icons/icons.stack.svg#chevron_left"></use>
@@ -70,7 +80,9 @@ function CatsPagination() {
               <li key={value} className="ds_pagination__item ">
                 <a
                   aria-label={`Page ${value}`}
-                  className="ds_pagination__link"
+                  className={`ds_pagination__link ${
+                    currentPage === value ? "ds_current" : ""
+                  }`}
                   onClick={() => setCurrentPage(value)}
                 >
                   <span className="ds_pagination__link-label">{value}</span>
@@ -82,7 +94,7 @@ function CatsPagination() {
                 <a
                   aria-label="Next page"
                   className="ds_pagination__link  ds_pagination__link--text  ds_pagination__link--icon"
-                  onClick={() => setCurrentPage(currentPage - 1)}
+                  onClick={() => setCurrentPage(currentPage + 1)}
                 >
                   <span className="ds_pagination__link-label">Next</span>
                   <svg className="ds_icon" aria-hidden="true" role="img">
@@ -93,7 +105,9 @@ function CatsPagination() {
             )}
           </ul>
         </nav>
-        <h3>Page {getPageNumber(1)}</h3>
+        <h3>
+          Page {currentPage} of {totalPages} (total {totalCats} cats)
+        </h3>
         <ul className="ds_side-navigation__list">
           {cats.map((cat) => (
             <li className="ds_side-navigation__item" key={cat.id}>
