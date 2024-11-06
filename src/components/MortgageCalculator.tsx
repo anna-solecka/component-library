@@ -7,11 +7,11 @@ import * as Yup from "yup";
 const MortgageCalculatorSchema = Yup.object().shape({
   loanAmount: Yup.string()
     .required("Field required")
-    .test("is-decimal", "Invalid number", (value) => !isNaN(value)),
+    .test("is-decimal", "Invalid number", (value) => !isNaN(Number(value))),
   loanTerm: Yup.string().required("Field required"),
   interest: Yup.string()
     .required("Field required")
-    .test("is-decimal", "Invalid number", (value) => !isNaN(value)),
+    .test("is-decimal", "Invalid number", (value) => !isNaN(Number(value))),
 });
 
 const monthlyPayment = (
@@ -57,7 +57,6 @@ const MortgageCalculator = () => {
           touched,
           handleChange,
           handleSubmit,
-          isSubmitting,
           isValid,
           submitCount,
         }) => {
@@ -106,11 +105,7 @@ const MortgageCalculator = () => {
               />
 
               <p></p>
-              <button
-                type="submit"
-                className="ds_button"
-                disabled={isSubmitting}
-              >
+              <button type="submit" className="ds_button">
                 Submit
               </button>
               {isValid && submitCount > 0 && (
@@ -118,20 +113,20 @@ const MortgageCalculator = () => {
                   <h3>
                     Monthly mortgage payment: £
                     {monthlyPayment(
-                      values.loanAmount,
-                      values.loanTerm,
-                      values.interest
+                      Number(values.loanAmount),
+                      Number(values.loanTerm),
+                      Number(values.interest)
                     ).toFixed(2)}
                   </h3>
                   <h3>
                     Total payment amount: £
                     {(
                       monthlyPayment(
-                        values.loanAmount,
-                        values.loanTerm,
-                        values.interest
+                        Number(values.loanAmount),
+                        Number(values.loanTerm),
+                        Number(values.interest)
                       ) *
-                      values.loanTerm *
+                      Number(values.loanTerm) *
                       12
                     ).toFixed(2)}
                   </h3>
@@ -139,13 +134,13 @@ const MortgageCalculator = () => {
                     Total interest paid: £
                     {(
                       monthlyPayment(
-                        values.loanAmount,
-                        values.loanTerm,
-                        values.interest
+                        Number(values.loanAmount),
+                        Number(values.loanTerm),
+                        Number(values.interest)
                       ) *
-                        values.loanTerm *
+                        Number(values.loanTerm) *
                         12 -
-                      values.loanAmount
+                      Number(values.loanAmount)
                     ).toFixed(2)}
                   </h3>
                 </div>
