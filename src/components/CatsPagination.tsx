@@ -4,26 +4,23 @@ import { Cat } from "./CatItem";
 import { Link } from "react-router-dom";
 
 import LayoutComponent from "./LayoutComponent";
+import DsTableGrid from "./DsTableGrid";
 
-// const getCatDots = (field: string) => (cat: any) => {
-//   return (
-//     <p>
-//       {[0, 1, 2, 3, 4].map((value) => (
-//         <span
-//           key={value}
-//           className={value < cat[field] ? "dot active" : "dot"}
-//         ></span>
-//       ))}{" "}
-//     </p>
-//   );
-// };
-
-const getPageNumber = (page: number) => {
-  return page;
+const getCatDots = (field: string) => (cat: any) => {
+  return (
+    <p>
+      {[0, 1, 2, 3, 4].map((value) => (
+        <span
+          key={value}
+          className={value < cat[field] ? "dot active" : "dot"}
+        ></span>
+      ))}{" "}
+    </p>
+  );
 };
 
-//const getAdabtiblityDots = getCatDots("adaptability");
-//const getChildFriendlyDots = getCatDots("child_friendly");
+const getAdabtiblityDots = getCatDots("adaptability");
+const getChildFriendlyDots = getCatDots("child_friendly");
 
 interface CatPagedResponse {
   data: Cat[];
@@ -108,6 +105,44 @@ function CatsPagination() {
         <h3>
           Page {currentPage} of {totalPages} (total {totalCats} cats)
         </h3>
+        <DsTableGrid
+          columns={[
+            {
+              label: "Name",
+              field: "name",
+            },
+            {
+              label: "Weight Imperial",
+              field: "weight.imperial",
+              render: (cat: any) => {
+                return <div>{cat.weight.imperial} lbs</div>;
+              },
+            },
+            {
+              label: "Weight Metric",
+              field: "weight.metric",
+              render: (cat: any) => {
+                return <div>{cat.weight.metric} kg</div>;
+              },
+            },
+
+            {
+              label: "Description",
+              field: "description",
+            },
+            {
+              label: "Adaptability",
+              field: "adaptability",
+              render: getAdabtiblityDots,
+            },
+            {
+              label: "Child friendly",
+              field: "child_friendly",
+              render: getChildFriendlyDots,
+            },
+          ]}
+          data={cats}
+        />
         <ul className="ds_side-navigation__list">
           {cats.map((cat) => (
             <li className="ds_side-navigation__item" key={cat.id}>
@@ -123,41 +158,4 @@ function CatsPagination() {
 }
 
 export default CatsPagination;
-/* <DsTableGrid
-        columns={[
-          {
-            label: "Name",
-            field: "name",
-            },
-            {
-              label: "Weight Imperial",
-              field: "weight.imperial",
-              render: (cat: any) => {
-                return <div>{cat.weight.imperial} lbs</div>;
-                },
-                },
-                {
-                  label: "Weight Metric",
-                  field: "weight.metric",
-                  render: (cat: any) => {
-                    return <div>{cat.weight.metric} kg</div>;
-                    },
-                    },
-                    
-                    {
-                      label: "Description",
-                      field: "description",
-                      },
-                      {
-                        label: "Adaptability",
-                        field: "adaptability",
-                        render: getAdabtiblityDots,
-                        },
-                        {
-                          label: "Child friendly",
-                          field: "child_friendly",
-                          render: getChildFriendlyDots,
-                          },
-                          ]}
-                          data={cats}
-                          /> */
+/*  */
