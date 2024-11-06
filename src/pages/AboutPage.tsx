@@ -1,5 +1,6 @@
 // import ContactFormFormik from "../components/ContactFormFormik";
 // import DsNotificationPanel from "../components/DsNotificationPanel";
+import DialogElement from "../components/DialogElement";
 import DsPageHeader from "../components/DsPageHeader";
 // import DsTable from "../components/DsTable";
 // import DsTableBody from "../components/DsTableBody";
@@ -14,12 +15,17 @@ const AboutPage = () => {
   return (
     <LayoutComponent
       header={
-        <DsPageHeader
-          title="Mortgage calculator"
-          label="Form in formik"
-          metadataKey="Last updated"
-          metadataValue="06.11.2024"
-        />
+        <>
+          <DialogElement title="Mortgage calculations:" buttonLabel="close">
+            <p>Calculations</p>
+          </DialogElement>
+          <DsPageHeader
+            title="Mortgage calculator"
+            label="Form in formik"
+            metadataKey="Last updated"
+            metadataValue="06.11.2024"
+          />
+        </>
       }
     >
       <MortgageCalculator />
