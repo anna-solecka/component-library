@@ -9,7 +9,7 @@ import DsPageHeader from "../components/DsPageHeader";
 // import DsTableRow from "../components/DsTableRow";
 
 import LayoutComponent from "../components/LayoutComponent";
-import MortgageCalculator from "../components/MortgageCalculator";
+import MortgageCalculatorWithoutPopup from "../components/MortgageCalculatorWithoutPopup";
 
 const AboutPage = () => {
   return (
@@ -26,7 +26,7 @@ const AboutPage = () => {
           </>
         }
       >
-        <MortgageCalculator />
+        <MortgageCalculatorWithoutPopup />
         {/* <DialogElement title="Mortgage calculations:" buttonLabel="close">
           <p>Calculations</p>
         </DialogElement> */}

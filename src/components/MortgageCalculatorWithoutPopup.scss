@@ -1,0 +1,22 @@
+.calculator__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.calculations {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  width: 60%;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  width: 40%;
+  padding-right: 20px;
+}
