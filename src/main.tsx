@@ -7,13 +7,16 @@ import "./design-system.css";
 import "./index.css";
 import { BasketProvider } from "./components/BasketContext.tsx";
 import { TodoProvider } from "./components/ToDo/TodoContext.tsx";
+import { DialogProvider } from "./components/DialogElement.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <TodoProvider>
         <BasketProvider>
-          <App />
+          <DialogProvider>
+            <App />
+          </DialogProvider>
         </BasketProvider>
       </TodoProvider>
     </BrowserRouter>
