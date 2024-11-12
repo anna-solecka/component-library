@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import DsInput from "./DsInput";
 import DsSelect from "./DsSelect";
+import DialogElement from "./DialogElement";
 //import axios from "axios";
 import * as Yup from "yup";
 
@@ -105,45 +106,51 @@ const MortgageCalculator = () => {
               />
 
               <p></p>
-              <button type="submit" className="ds_button">
+              {/* <button type="submit" className="ds_button">
                 Submit
-              </button>
+              </button> */}
               {isValid && submitCount > 0 && (
-                <div>
-                  <h3>
-                    Monthly mortgage payment: £
-                    {monthlyPayment(
-                      Number(values.loanAmount),
-                      Number(values.loanTerm),
-                      Number(values.interest)
-                    ).toFixed(2)}
-                  </h3>
-                  <h3>
-                    Total payment amount: £
-                    {(
-                      monthlyPayment(
+                <DialogElement
+                  title="Mortgage calculations:"
+                  buttonOpenLabel="Show calculations"
+                  buttonCloseLabel="Close"
+                >
+                  <div>
+                    <h3>
+                      Monthly mortgage payment: £
+                      {monthlyPayment(
                         Number(values.loanAmount),
                         Number(values.loanTerm),
                         Number(values.interest)
-                      ) *
-                      Number(values.loanTerm) *
-                      12
-                    ).toFixed(2)}
-                  </h3>
-                  <h3>
-                    Total interest paid: £
-                    {(
-                      monthlyPayment(
-                        Number(values.loanAmount),
-                        Number(values.loanTerm),
-                        Number(values.interest)
-                      ) *
+                      ).toFixed(2)}
+                    </h3>
+                    <h3>
+                      Total payment amount: £
+                      {(
+                        monthlyPayment(
+                          Number(values.loanAmount),
+                          Number(values.loanTerm),
+                          Number(values.interest)
+                        ) *
                         Number(values.loanTerm) *
-                        12 -
-                      Number(values.loanAmount)
-                    ).toFixed(2)}
-                  </h3>
-                </div>
+                        12
+                      ).toFixed(2)}
+                    </h3>
+                    <h3>
+                      Total interest paid: £
+                      {(
+                        monthlyPayment(
+                          Number(values.loanAmount),
+                          Number(values.loanTerm),
+                          Number(values.interest)
+                        ) *
+                          Number(values.loanTerm) *
+                          12 -
+                        Number(values.loanAmount)
+                      ).toFixed(2)}
+                    </h3>
+                  </div>
+                </DialogElement>
               )}
             </form>
           );

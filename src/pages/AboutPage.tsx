@@ -1,6 +1,6 @@
 // import ContactFormFormik from "../components/ContactFormFormik";
 // import DsNotificationPanel from "../components/DsNotificationPanel";
-import DialogElement from "../components/DialogElement";
+
 import DsPageHeader from "../components/DsPageHeader";
 // import DsTable from "../components/DsTable";
 // import DsTableBody from "../components/DsTableBody";
@@ -13,23 +13,32 @@ import MortgageCalculator from "../components/MortgageCalculator";
 
 const AboutPage = () => {
   return (
-    <LayoutComponent
-      header={
-        <>
-          <DialogElement title="Mortgage calculations:" buttonLabel="close">
-            <p>Calculations</p>
-          </DialogElement>
-          <DsPageHeader
-            title="Mortgage calculator"
-            label="Form in formik"
-            metadataKey="Last updated"
-            metadataValue="06.11.2024"
-          />
-        </>
-      }
-    >
-      <MortgageCalculator />
-      {/* <DsNotificationPanel title="Thank you for visiting">
+    <>
+      <LayoutComponent
+        header={
+          <>
+            <DsPageHeader
+              title="Mortgage calculator"
+              label="Form in formik"
+              metadataKey="Last updated"
+              metadataValue="06.11.2024"
+            />
+          </>
+        }
+      >
+        <MortgageCalculator />
+        {/* <DialogElement title="Mortgage calculations:" buttonLabel="close">
+          <p>Calculations</p>
+        </DialogElement> */}
+      </LayoutComponent>
+    </>
+  );
+};
+
+export default AboutPage;
+//
+{
+  /* <DsNotificationPanel title="Thank you for visiting">
         "This is a contact form page"
       </DsNotificationPanel>
       <ContactFormFormik />
@@ -60,9 +69,11 @@ const AboutPage = () => {
             <DsTableCell>Row 3</DsTableCell>
           </DsTableRow>
         </DsTableBody>
-      </DsTable> */}
+      </DsTable> */
+}
 
-      {/* <Table7Container component={Paper}>
+{
+  /* <Table7Container component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -88,10 +99,5 @@ const AboutPage = () => {
             </TableRow>
         </TableBody>
       </Table>
-    </TableContainer> */}
-    </LayoutComponent>
-  );
-};
-
-export default AboutPage;
-//
+    </TableContainer> */
+}
