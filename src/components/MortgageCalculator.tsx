@@ -4,6 +4,7 @@ import DsSelect from "./DsSelect";
 import DialogElement from "./DialogElement";
 //import axios from "axios";
 import * as Yup from "yup";
+import { useState } from "react";
 
 const MortgageCalculatorSchema = Yup.object().shape({
   loanAmount: Yup.string()
@@ -27,6 +28,7 @@ const monthlyPayment = (
 };
 
 const MortgageCalculator = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <Formik
@@ -37,7 +39,10 @@ const MortgageCalculator = () => {
           interest: "",
         }}
         validationSchema={MortgageCalculatorSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => {
+          console.log(values);
+          setOpen(true);
+        }}
         // onSubmit={(values, { setSubmitting, resetForm }) => {
         //   axios
         //     .post("/api/calculator", values)
@@ -52,15 +57,7 @@ const MortgageCalculator = () => {
         //     });
         // }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleSubmit,
-          isValid,
-          submitCount,
-        }) => {
+        {({ values, errors, touched, handleChange, handleSubmit }) => {
           return (
             <form onSubmit={handleSubmit}>
               <DsInput
@@ -106,14 +103,14 @@ const MortgageCalculator = () => {
               />
 
               <p></p>
-              {/* <button type="submit" className="ds_button">
+              <button type="submit" className="ds_button">
                 Submit
-              </button> */}
-              {isValid && submitCount > 0 && (
+              </button>
+              {open && (
                 <DialogElement
                   title="Mortgage calculations:"
-                  buttonOpenLabel="Show calculations"
                   buttonCloseLabel="Close"
+                  onClose={() => setOpen(false)}
                 >
                   <div>
                     <h3>
