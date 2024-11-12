@@ -73,10 +73,3 @@ const DialogElement: React.FC<DialogElementProps> = ({
 };
 
 export default DialogElement;
-// <dialog open className="backdrop">
-//   <p>{title}</p>
-//   <form method="dialog">
-//     {children}
-//     <button>{buttonLabel}</button>
-//   </form>
-// </dialog>
