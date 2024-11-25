@@ -1,35 +1,22 @@
 // import ContactFormFormik from "../components/ContactFormFormik";
 // import DsNotificationPanel from "../components/DsNotificationPanel";
 
-import DsPageHeader from "../components/DsPageHeader";
 // import DsTable from "../components/DsTable";
 // import DsTableBody from "../components/DsTableBody";
 // import DsTableCell from "../components/DsTableCell";
 // import DsTableHead from "../components/DsTableHead";
 // import DsTableRow from "../components/DsTableRow";
+import "../index.css";
 
 import LayoutComponent from "../components/LayoutComponent";
-import MortgageCalculatorWithoutPopup from "../components/MortgageCalculatorWithoutPopup";
+//import TranslationLandingPage from "../components/TranslationLandingPage";
+import DiceRoller from "../components/DiceRoller";
 
 const AboutPage = () => {
   return (
     <>
-      <LayoutComponent
-        header={
-          <>
-            <DsPageHeader
-              title="Mortgage calculator"
-              label="Form in formik"
-              metadataKey="Last updated"
-              metadataValue="06.11.2024"
-            />
-          </>
-        }
-      >
-        <MortgageCalculatorWithoutPopup />
-        {/* <DialogElement title="Mortgage calculations:" buttonLabel="close">
-          <p>Calculations</p>
-        </DialogElement> */}
+      <LayoutComponent>
+        <DiceRoller />
       </LayoutComponent>
     </>
   );

@@ -1,0 +1,48 @@
+.landing-page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+form div {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.testimonials blockquote {
+  margin: 20px 0;
+  padding: 10px;
+  border-left: 5px solid #ccc;
+}
+
+.testimonials footer {
+  text-align: right;
+  font-style: italic;
+}

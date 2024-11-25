@@ -3,6 +3,17 @@ body {
     "Lucida Sans", Arial, sans-serif;
 }
 .cat_container {
+  .dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot.active {
+    background-color: #0065bd;
+  }
 }
 .cat_header {
   border-bottom: 2px solid grey;
@@ -25,17 +36,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-.dot {
-  height: 15px;
-  width: 15px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
 
-.dot.active {
-  background-color: #0065bd;
-}
 .cat_characteristics {
   display: flex;
   justify-content: space-between;
