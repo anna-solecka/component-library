@@ -1,11 +1,11 @@
-import React from "react";
 import Button from "../components/Button";
 import LayoutComponent from "../components/LayoutComponent";
+import { SidebarLinks } from "./ComponentsPage";
 
 const ButtonPage = () => {
   return (
-    <LayoutComponent>
-      {" "}
+    <LayoutComponent sidebar={<SidebarLinks />}>
+      {<h2>Button</h2>}
       <Button label="Button" />
       <Button label="Cancel" style="cancel" />{" "}
       <Button label="Secondary" style="secondary" />{" "}

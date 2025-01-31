@@ -19,6 +19,8 @@ import ProductsPage from "./pages/ProductsPage";
 import ProductProfile from "./components/ProductProfile";
 import CatsPage from "./components/CatsPage";
 import CatItem from "./components/CatItem";
+import ConfirmationMessagePage from "./pages/ConfirmationMessagePage";
+import DetailsPage from "./pages/DetailsPage";
 
 function App() {
   const location = useLocation();
@@ -29,32 +31,32 @@ function App() {
         <SiteHeader
           title="Design System"
           navItems={[
-            {
-              label: "Cats",
-              href: "/cats",
-              isCurrent: location.pathname === "/cats",
-            },
-            { label: "Home", href: "/", isCurrent: location.pathname === "/" },
-            {
-              label: "About",
-              href: "/about",
-              isCurrent: location.pathname === "/about",
-            },
+            // {
+            //   label: "Cats",
+            //   href: "/cats",
+            //   isCurrent: location.pathname === "/cats",
+            // },
+            // { label: "Home", href: "/", isCurrent: location.pathname === "/" },
+            // {
+            //   label: "About",
+            //   href: "/about",
+            //   isCurrent: location.pathname === "/about",
+            // },
             {
               label: "Components",
               href: "/components",
               isCurrent: location.pathname === "/components",
             },
-            {
-              label: "Users",
-              href: "/users",
-              isCurrent: location.pathname === "/users",
-            },
-            {
-              label: "Products",
-              href: "/products",
-              isCurrent: location.pathname === "/products",
-            },
+            // {
+            //   label: "Users",
+            //   href: "/users",
+            //   isCurrent: location.pathname === "/users",
+            // },
+            // {
+            //   label: "Products",
+            //   href: "/products",
+            //   isCurrent: location.pathname === "/products",
+            // },
           ]}
         />
       }
@@ -90,6 +92,11 @@ function App() {
           path="/components/cardnavigation"
           Component={CardNavigationPage}
         />
+        <Route
+          path="/components/confirmationmessage"
+          Component={ConfirmationMessagePage}
+        />
+        <Route path="/components/details" Component={DetailsPage} />
       </Routes>
     </DesignSystem>
   );

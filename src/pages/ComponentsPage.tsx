@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import LayoutComponent from "../components/LayoutComponent";
-import Accordion2 from "../components/Accordion2";
 
 export const SidebarLinks = () => {
   return (
@@ -12,10 +11,16 @@ export const SidebarLinks = () => {
         <Link to={"/components/button"}>Button</Link>
       </div>
       <div>
-        <Link to={"/components/tabs"}>Tabs</Link>
+        <Link to={"/components/cardnavigation"}>Card Navigation</Link>
       </div>
       <div>
-        <Link to={"/components/cardnavigation"}>Card Navigation</Link>
+        <Link to={"/components/confirmationmessage"}>Confirmation Message</Link>
+      </div>
+      <div>
+        <Link to={"/components/details"}>Details</Link>
+      </div>
+      <div>
+        <Link to={"/components/tabs"}>Tabs</Link>
       </div>
     </div>
   );
@@ -23,26 +28,8 @@ export const SidebarLinks = () => {
 
 const ComponentsPage = () => {
   return (
-    <LayoutComponent>
-      <Accordion2
-        items={[
-          {
-            title: "First Item",
-            content: "Accordion Item",
-            checked: false,
-          },
-          {
-            title: "Second Item",
-            content: "Accordion Item",
-            checked: false,
-          },
-          {
-            title: "Third Item",
-            content: "Accordion Item",
-            checked: false,
-          },
-        ]}
-      />
+    <LayoutComponent sidebar={<SidebarLinks />}>
+      Design System Components
     </LayoutComponent>
   );
 };
